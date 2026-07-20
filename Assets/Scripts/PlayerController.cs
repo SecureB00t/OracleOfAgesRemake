@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         // Automatically find the sword collider
-        swordCollider = transform.Find("Weapon/Sword").GetComponent<BoxCollider2D>();
+        swordCollider = transform.Find("Weapon/Sword/Hitbox").GetComponent<BoxCollider2D>();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -57,8 +57,9 @@ public class PlayerController : MonoBehaviour
     public void MainTool(InputAction.CallbackContext context)
     {
         if (context.started){
-            myAnimator.SetTrigger("attack");
+            myAnimator.SetTrigger("attack");            
             //myAnimator.SetBool("isAttacking", false);
+
         }
     }
 
@@ -74,8 +75,6 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator walkAnimationFlipTimerTrue(float timeToWait)
     {
-        Debug.Log(input.y);
-
 
         while(input.y != 0){
             //spriteRenderer.flipX = true;                      FLIP EVERYTHING
@@ -99,6 +98,21 @@ public class PlayerController : MonoBehaviour
 
         flipCoroutine = null;
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player collided with enemy: " + collision.gameObject.name);
+            Knockback(collision);
+        }
+    }
+
+    private void Knockback(Collision2D collision)
+    {
+        Vector2 knockbackDirection = (transform.position - collision.transform.position).normalized;
+        rb.AddForce(knockbackDirection * 5f, ForceMode2D.Impulse);
     }
 
     private void OnDrawGizmos()
