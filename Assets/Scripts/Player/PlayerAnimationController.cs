@@ -17,6 +17,8 @@ public class PlayerAnimationController : MonoBehaviour
         inputController = GetComponent<PlayerInputController>();
     }
 
+//TODO - Change so that only once place is flipping the sprite. Avoid overriding in multiple places.
+//TODO - Switch from flipping the scale of the whole object to just flipping the sprite. I think physics issues are happening with current implementation. Will have to adjust logic to rotate the weapon. Maybe change weapon scale only?
     void Update()
     {
         myAnimator.SetFloat("Horizontal", inputController.directionalInput.x);
@@ -38,7 +40,7 @@ public class PlayerAnimationController : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f); // Reset scale when not moving vertically
         }
 
-        if (inputController.directionalInput.x != 0)
+        if (inputController.directionalInput.x != 0 && inputController.directionalInput.y == 0)
         {
             transform.localScale = new Vector3(-Mathf.Sign(inputController.directionalInput.x), 1f, 1f); // Flip sprite based on horizontal input
         }
@@ -48,11 +50,9 @@ public class PlayerAnimationController : MonoBehaviour
 
         while(inputController.directionalInput.y != 0){
             transform.localScale = new Vector3(-1f, 1f, 1f);
-            Debug.Log("Flipping sprite to -1");
             yield return new WaitForSeconds(timeToWait);
             if(inputController.directionalInput.y==0){break;}                            
             transform.localScale = new Vector3(1f, 1f, 1f);
-            Debug.Log("Flipping sprite to 1");
             yield return new WaitForSeconds(timeToWait);
         }
 
