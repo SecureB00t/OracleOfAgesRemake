@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4328417f47094556d9f9c41aee9985d1, type: 3}
   m_Name: BombBag
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  itemName: Bomb
-  icon: {fileID: -1483665779731714255, guid: d9dca77373ddbeb6f8f6414b6b1ae6e4, type: 3}
-  description: It will fuck you up.
-  isStackable: 1
-  maxStackSize: 10
-  hasItem: 0
+  itemName: 
+  icon: {fileID: 0}
+  description: 
