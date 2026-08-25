@@ -48,11 +48,9 @@ public class PlayerAnimationController : MonoBehaviour
 
         while(inputController.directionalInput.y != 0){
             transform.localScale = new Vector3(-1f, 1f, 1f);
-            Debug.Log("Flipping sprite to -1");
             yield return new WaitForSeconds(timeToWait);
             if(inputController.directionalInput.y==0){break;}                            
             transform.localScale = new Vector3(1f, 1f, 1f);
-            Debug.Log("Flipping sprite to 1");
             yield return new WaitForSeconds(timeToWait);
         }
 
