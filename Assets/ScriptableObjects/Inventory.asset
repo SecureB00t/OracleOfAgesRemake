@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   items:
-  - itemType: {fileID: 11400000, guid: 07ac3b35dc1aca9ac99573cbd8842e38, type: 2}
-    ammo: 0
+  - {fileID: 11400000, guid: 648c186b15385a33a9573eda31a03a62, type: 2}
+  - {fileID: 11400000, guid: 07ac3b35dc1aca9ac99573cbd8842e38, type: 2}
