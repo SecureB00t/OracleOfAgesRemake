@@ -2,21 +2,15 @@ using UnityEngine;
 
 public class PlayerInteractionController : MonoBehaviour
 {
-    [SerializeField] private Inventory inventory;  
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        if (collision.gameObject.CompareTag("Pickup"))
-        {
-            Pickup pickup = collision.GetComponent<Pickup>();
-
-            if (pickup != null)
-            {
-                inventory.AddAmmo(pickup.itemData, pickup.ammoAmount);
-            }
-
-             Destroy(collision.gameObject);
-        }
+        
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
