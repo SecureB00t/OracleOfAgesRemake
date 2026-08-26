@@ -74,6 +74,24 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void UseItem(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            ItemInstance bombInstance = inventory.GetItem(inventory.items.Find(item => item.itemType.itemName == "Bomb").itemType);
+            if (bombInstance != null && bombInstance.ammo > 0)
+            {
+                bombInstance.ammo--;
+                Debug.Log("Used a bomb! Remaining bombs: " + bombInstance.ammo);
+                // Here you would instantiate the bomb prefab or trigger the bomb's effect
+            }
+            else
+            {
+                Debug.Log("No bombs left to use!");
+            }
+        }
+    }
+
     public void MainTool(InputAction.CallbackContext context)
     {
         if (context.started)
