@@ -23,15 +23,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "SubToolA",
-                    "type": "Button",
-                    "id": "09a3c873-b4b1-4ca4-a21b-eeab44f71ad1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -109,17 +100,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "MainTool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "47259240-7cea-4ac2-bc1c-a5e5fb15e566",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SubToolA",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
