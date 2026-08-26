@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   itemName: Bomb
   icon: {fileID: -1483665779731714255, guid: d9dca77373ddbeb6f8f6414b6b1ae6e4, type: 3}
-  description: It will mess you up.
+  description: It will fuck you up.
   isStackable: 1
   maxStackSize: 10
   hasItem: 0
