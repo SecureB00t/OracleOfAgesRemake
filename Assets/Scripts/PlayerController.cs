@@ -134,6 +134,21 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(knockbackDirection * 5f, ForceMode2D.Impulse);
     }
 
+    private void OnDrawGizmos()
+    {
+        if (swordCollider == null)
+            return;
+
+        Gizmos.color = swordCollider.enabled ? Color.red : Color.gray;
+
+        Vector3 center = swordCollider.transform.TransformPoint(swordCollider.offset);
+        Vector3 size = Vector3.Scale(
+            swordCollider.size,
+            swordCollider.transform.lossyScale
+        );
+
+        Gizmos.DrawWireCube(center, size);
+    }
 
     private void TakeDamage(Collision2D collision){
         health -= collision.gameObject.GetComponent<EnemyController>().damage;
@@ -150,19 +165,14 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DamageFlash()
     {
+        spriteRenderer.GetPropertyBlock(block);
 
-        for (int i = 0; i < 4; i++)
-        {
-            Debug.Log("Damage flash iteration: " + i);
-            spriteRenderer.GetPropertyBlock(block);
-            yield return new WaitForSeconds(0.066f);
-            block.SetFloat("_DamageFlash", 1f);
-            spriteRenderer.SetPropertyBlock(block);
-            yield return new WaitForSeconds(0.066f);
-            block.SetFloat("_DamageFlash", 0f);
-            spriteRenderer.SetPropertyBlock(block);
-            Debug.Log("Damage flash reset iteration: " + i);
-        }
+        block.SetFloat("_DamageFlash", 1f);
+        spriteRenderer.SetPropertyBlock(block);
 
+        yield return new WaitForSeconds(0.1f);
+
+        block.SetFloat("_DamageFlash", 0f);
+        spriteRenderer.SetPropertyBlock(block);
     }
 }
