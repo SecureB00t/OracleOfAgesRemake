@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] protected int HP = 1;
+    [SerializeField] public int damage = 1;
     private Coroutine flashCoroutine;
 
     private void OnTriggerEnter2D(Collider2D other)
