@@ -375,7 +375,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.8340675, y: 1.4663029}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -385,7 +385,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.012326, y: 0.9490013}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &214689209
 MonoBehaviour:
@@ -410,7 +410,7 @@ Transform:
   m_GameObject: {fileID: 214689207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.32988, y: 46.00207, z: 0}
+  m_LocalPosition: {x: -0.67011976, y: 48.75207, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -66339,7 +66339,7 @@ Transform:
   m_GameObject: {fileID: 358185340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8298802, y: 1.4354286, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -66422,6 +66422,8 @@ GameObject:
   - component: {fileID: 392176532}
   - component: {fileID: 392176533}
   - component: {fileID: 392176534}
+  - component: {fileID: 392176535}
+  - component: {fileID: 392176536}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -66460,7 +66462,7 @@ Transform:
   m_GameObject: {fileID: 392176524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5625, y: 45.25, z: 0}
+  m_LocalPosition: {x: -3.8125, y: 49.1875, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -66482,10 +66484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2de70d5c7d8fa0bb20d10789da332f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReportMousePosition
-  swordCollider: {fileID: 0}
-  health: -2147483648
   inventory: {fileID: 11400000, guid: 616cc0b8d8f12ae01804199cd819fbfa, type: 2}
-  mainTool: {fileID: 1497380599}
 --- !u!114 &392176529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66529,8 +66528,8 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 392176528}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 392176533}
+        m_TargetAssemblyTypeName: PlayerInputController, Assembly-CSharp
         m_MethodName: MainTool
         m_Mode: 0
         m_Arguments:
@@ -66650,6 +66649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2072919b2016a95979289b26eaed67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputController
+  mainTool: {fileID: 1661906533}
   directionalInput: {x: 0, y: 0}
 --- !u!114 &392176534
 MonoBehaviour:
@@ -66663,6 +66663,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dae7b2b000742f3990c86a7fddcbea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
+--- !u!114 &392176535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392176524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3916b9ca227e2ba7f9cda141c49442ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractionController
+  health: 6
+--- !u!114 &392176536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392176524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8cece1d8b6716bd9a81e4108f55485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractionController
+  inventory: {fileID: 11400000, guid: 616cc0b8d8f12ae01804199cd819fbfa, type: 2}
 --- !u!1 &523679635
 GameObject:
   m_ObjectHideFlags: 0
@@ -67637,7 +67663,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.8340675, y: 1.4663029}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -67647,7 +67673,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.012326, y: 0.9490013}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2067757755
 MonoBehaviour:
@@ -67705,7 +67731,7 @@ Transform:
   m_GameObject: {fileID: 2112988334}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0625, y: 0.0625, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
