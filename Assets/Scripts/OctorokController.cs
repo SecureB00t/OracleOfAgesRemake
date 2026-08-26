@@ -11,7 +11,6 @@ public class OctorokController : EnemyController
     private Animator enemyAnimator;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private float speed = 2f;
-    Color[] palette;
 
 
     private enum possibleActions { Move, Idle, Shoot };
@@ -30,16 +29,6 @@ public class OctorokController : EnemyController
 
         enemyAnimator = GetComponentInParent<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        palette = SpritePaletteProcessor.GetPalette(spriteRenderer.sprite.texture);
-
-
-        MaterialPropertyBlock block = new MaterialPropertyBlock();
-
-        block.SetColor("_Palette0", palette[0]);
-        block.SetColor("_Palette1", palette[1]);
-        block.SetColor("_Palette2", palette[2]);
-
-        spriteRenderer.SetPropertyBlock(block);
 
         //Debugging
     }
