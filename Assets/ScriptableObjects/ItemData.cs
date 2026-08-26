@@ -7,4 +7,8 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     [TextArea]
     public string description;
+    public bool isStackable;
+    public int maxStackSize;
+    public bool hasItem;
+
 }
