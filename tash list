@@ -1,0 +1,95 @@
+[33mcommit ba06148787072e844f100b465cea2a19e449494a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32minventoryTesting[m[33m)[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Fri Jul 31 21:28:32 2026 -0500
+
+    Bomb Abstraction and explosion/damage effects
+
+[33mcommit a24635e40473a09431f39614517d8e3c5c0f4127[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Thu Jul 30 20:58:50 2026 -0500
+
+    Added Initial Bomb-inventory logic
+
+[33mcommit 580d14ffe7b4fdd9b77205f2f70a08c66e9aab03[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Fri Jul 24 08:51:27 2026 -0500
+
+    movement fucked
+
+[33mcommit 171806489e8c0b48ee12f59bef2920cb9f7aee31[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Thu Jul 23 14:09:34 2026 -0500
+
+    statsh
+
+[33mcommit 8f6c6f01a86aad8ffdb436971f3d88f7d4f730f0[m[33m ([m[1;31morigin/inventoryTesting[m[33m)[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Wed Jul 22 22:23:56 2026 -0500
+
+    damage flash shader working
+
+[33mcommit 9cc2a475494fb192d2ab6de7b42afc5831dd7f53[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Sun Jul 19 21:05:47 2026 -0500
+
+    octorok basic behavior
+
+[33mcommit 40492a3cec27e439e7ab6985a3b036d4cdad9465[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Sun Jul 19 17:28:14 2026 -0500
+
+    separated sword animation
+
+[33mcommit 2e5071898b432e0b91f851fede188ec8a38df75c[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Sat Jul 18 09:04:03 2026 -0500
+
+    new comp
+
+[33mcommit 5a38cff64500c5bd3d8e7b3c128733f633da6e78[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Tue Mar 24 07:54:50 2026 -0500
+
+    Player walking animations, beginning sword
+
+[33mcommit 35691d1cc3784b3e71119ef9b147140e288e6dfc[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Sat Mar 21 22:37:13 2026 -0500
+
+    bottom 3x14 done
+
+[33mcommit 2b40484e9ef8339138888251901c8af569cb1c08[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Fri Mar 20 16:03:24 2026 -0500
+
+    3x9 from bottom left finished
+
+[33mcommit 682c813eafdd6b7165141537dfdae111cfbacc85[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Fri Mar 20 15:31:06 2026 -0500
+
+    started overworld. Bottom Left
+
+[33mcommit a7e28aab7ae17d408b2f4103e1ceb4b10ad44915[m[33m ([m[1;32mcheckout[m[33m)[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Thu Mar 19 12:55:55 2026 -0500
+
+    test3
+
+[33mcommit e292fcdece260ce33dabe905af842474ff86bc8c[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Thu Mar 19 12:55:29 2026 -0500
+
+    test2
+
+[33mcommit d4eb8c54646c9d0622e87b6b4ac53cf5c7eb8cec[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Thu Mar 19 12:52:30 2026 -0500
+
+    test sync
+
+[33mcommit b62c15c05be3f8419435ce673656d5b7120ce857[m
+Author: SecureB00t <ashercoates@proton.me>
+Date:   Thu Mar 19 12:40:20 2026 -0500
+
+    First Commit - a few screens mapped
