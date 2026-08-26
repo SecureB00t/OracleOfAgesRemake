@@ -8,6 +8,9 @@ public class PlayerAnimationController : MonoBehaviour
     private PlayerMovement playerMovement;
     private Coroutine flipCoroutine;
     private PlayerInputController inputController;
+    private SpriteRenderer spriteRenderer;
+    private MaterialPropertyBlock block;
+    Color[] palette;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,6 +18,20 @@ public class PlayerAnimationController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         inputController = GetComponent<PlayerInputController>();
+        spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        block = new MaterialPropertyBlock();
+
+        palette = SpritePaletteProcessor.GetPalette(spriteRenderer.sprite.texture);
+        block = new MaterialPropertyBlock();
+        spriteRenderer.GetPropertyBlock(block);
+
+        block.SetColor("_Palette0", palette[0]);
+        block.SetColor("_Palette1", palette[1]);
+        Debug.Log(palette[1]);
+        block.SetColor("_Palette2", palette[2]);
+        block.SetFloat("_DamageFlash", 0f);
+        spriteRenderer.SetPropertyBlock(block);
+        //mainTool.Initialize(inventory);
     }
 
 //TODO - Change so that only once place is flipping the sprite. Avoid overriding in multiple places.
@@ -64,5 +81,27 @@ public class PlayerAnimationController : MonoBehaviour
 
         flipCoroutine = null;
 
+    }
+
+    private IEnumerator DamageFlash()
+    {
+
+        for (int i = 0; i < 4; i++)
+        {
+            Debug.Log("Damage flash iteration: " + i);
+            spriteRenderer.GetPropertyBlock(block);
+            yield return new WaitForSeconds(0.066f);
+            block.SetFloat("_DamageFlash", 1f);
+            spriteRenderer.SetPropertyBlock(block);
+            yield return new WaitForSeconds(0.066f);
+            block.SetFloat("_DamageFlash", 0f);
+            spriteRenderer.SetPropertyBlock(block);
+            Debug.Log("Damage flash reset iteration: " + i);
+        }
+
+    }
+
+    public void PlayDamageFlash(){
+        StartCoroutine(DamageFlash());
     }
 }
