@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+
     [SerializeField] private BoxCollider2D swordCollider;
     [SerializeField] private int health = 6;
     [SerializeField] private Inventory inventory;  
@@ -12,18 +12,14 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 input;
     private Rigidbody2D rb;
-    private Animator myAnimator;
     private SpriteRenderer spriteRenderer;
-    private Coroutine flipCoroutine;
     private MaterialPropertyBlock block;
     Color[] palette;
-
+//Initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-        // Automatically find the sword collider
         swordCollider = transform.Find("Weapon/Sword/Hitbox").GetComponent<BoxCollider2D>();
 
         //NOT CURRENTLY USED
@@ -41,38 +37,8 @@ public class PlayerController : MonoBehaviour
         
 
     }
+//Movement and Input
 
-    public void Move(InputAction.CallbackContext context)
-    {
-        
-        input = context.ReadValue<Vector2>();
-        myAnimator.SetFloat("Horizontal", input.x);
-        myAnimator.SetFloat("Vertical", input.y);
-        myAnimator.SetBool("isMoving", input != Vector2.zero);
-
-        if (input != Vector2.zero)
-        {
-            myAnimator.SetFloat("LastHorizontal", input.x);
-            myAnimator.SetFloat("LastVertical", input.y);
-        }
-
-        if (input.y != 0 && flipCoroutine == null)
-        {
-            flipCoroutine = StartCoroutine(walkAnimationFlipTimerTrue(.1f));
-        }
-        else if (input.y == 0 && flipCoroutine != null)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f); // Reset scale when not moving vertically
-        }
-
-        if (input.x != 0)
-        {
-            transform.localScale = new Vector3(-Mathf.Sign(input.x), 1f, 1f); // Flip sprite based on horizontal input
-        }
-
-
-
-    }
 
     public void MainTool(InputAction.CallbackContext context)
     {
@@ -84,42 +50,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
-    {
-        if (input != Vector2.zero)
-        {
-            rb.MovePosition(rb.position + input * speed * Time.fixedDeltaTime);
-        }
-    }
-
-
-    private IEnumerator walkAnimationFlipTimerTrue(float timeToWait)
-    {
-
-        while(input.y != 0){
-            //spriteRenderer.flipX = true;                      FLIP EVERYTHING
-            //yield return new WaitForSeconds(timeToWait);      WAIT
-            //if(input.y==0){break;}                            STOP IF NO INPUT
-            //spriteRenderer.flipX = false;                     FLIP BACK
-            //yield return new WaitForSeconds(timeToWait);      WAIT
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-            yield return new WaitForSeconds(timeToWait);
-            if(input.y==0){break;}                            
-            transform.localScale = new Vector3(1f, 1f, 1f);
-            yield return new WaitForSeconds(timeToWait);
-        }
-
-        if(input == Vector2.zero){
-            //spriteRenderer.flipX = false;                     RESET IF NO INPUT
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-
-
-
-        flipCoroutine = null;
-
-    }
-
+//Collision and Damage
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
