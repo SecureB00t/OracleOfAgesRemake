@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private BoxCollider2D swordCollider;
     [SerializeField] private int health = 6;
-    [SerializeField] private Inventory inventory;  
-    [SerializeField] private Tool mainTool;
 
     private Vector2 input;
     private Rigidbody2D rb;
@@ -37,7 +35,6 @@ public class PlayerController : MonoBehaviour
         block.SetColor("_Palette2", palette[2]);
         block.SetFloat("_DamageFlash", 0f);
         spriteRenderer.SetPropertyBlock(block);
-        mainTool.Initialize(inventory);
         
 
     }
@@ -74,31 +71,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void UseItem(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            ItemInstance bombInstance = inventory.GetItem(inventory.items.Find(item => item.itemType.itemName == "Bomb").itemType);
-            if (bombInstance != null && bombInstance.ammo > 0)
-            {
-                bombInstance.ammo--;
-                Debug.Log("Used a bomb! Remaining bombs: " + bombInstance.ammo);
-                // Here you would instantiate the bomb prefab or trigger the bomb's effect
-            }
-            else
-            {
-                Debug.Log("No bombs left to use!");
-            }
-        }
-    }
-
     public void MainTool(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            mainTool.Use();
-        }
+        if (context.started){
+            myAnimator.SetTrigger("attack");            
+            //myAnimator.SetBool("isAttacking", false);
 
+        }
     }
 
 
@@ -146,25 +125,6 @@ public class PlayerController : MonoBehaviour
             TakeDamage(collision);
             Debug.Log("Player collided with enemy: " + collision.gameObject.name);
             Knockback(collision);
-        }
-
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Pickup"))
-        {
-            Pickup pickup = collision.GetComponent<Pickup>();
-
-            if (pickup != null)
-            {
-                inventory.AddAmmo(pickup.itemData, pickup.ammoAmount);
-
-                Debug.Log("OK");
-            }
-
-             Destroy(collision.gameObject);
         }
     }
 
