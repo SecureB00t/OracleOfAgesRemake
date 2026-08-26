@@ -6,15 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private BoxCollider2D swordCollider;
-    [SerializeField] private int health = 6;
 
     private Vector2 input;
     private Rigidbody2D rb;
     private Animator myAnimator;
     private SpriteRenderer spriteRenderer;
     private Coroutine flipCoroutine;
-    private MaterialPropertyBlock block;
-    Color[] palette;
 
     void Start()
     {
@@ -23,20 +20,6 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         // Automatically find the sword collider
         swordCollider = transform.Find("Weapon/Sword/Hitbox").GetComponent<BoxCollider2D>();
-
-        //NOT CURRENTLY USED
-        palette = SpritePaletteProcessor.GetPalette(spriteRenderer.sprite.texture);
-        block = new MaterialPropertyBlock();
-        spriteRenderer.GetPropertyBlock(block);
-
-        block.SetColor("_Palette0", palette[0]);
-        block.SetColor("_Palette1", palette[1]);
-        Debug.Log(palette[1]);
-        block.SetColor("_Palette2", palette[2]);
-        block.SetFloat("_DamageFlash", 0f);
-        spriteRenderer.SetPropertyBlock(block);
-        
-
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -119,10 +102,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(collision);
             Debug.Log("Player collided with enemy: " + collision.gameObject.name);
             Knockback(collision);
         }
@@ -148,31 +129,5 @@ public class PlayerController : MonoBehaviour
         );
 
         Gizmos.DrawWireCube(center, size);
-    }
-
-    private void TakeDamage(Collision2D collision){
-        health -= collision.gameObject.GetComponent<EnemyController>().damage;
-        StartCoroutine(DamageFlash());
-        Debug.Log("Player took damage! Current health: " + health);
-        if (health <= 0){
-            Die();
-        }
-    }
-
-    private void Die(){
-        Destroy(gameObject);
-    }
-
-    private IEnumerator DamageFlash()
-    {
-        spriteRenderer.GetPropertyBlock(block);
-
-        block.SetFloat("_DamageFlash", 1f);
-        spriteRenderer.SetPropertyBlock(block);
-
-        yield return new WaitForSeconds(0.1f);
-
-        block.SetFloat("_DamageFlash", 0f);
-        spriteRenderer.SetPropertyBlock(block);
     }
 }
