@@ -64,6 +64,10 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(timeToWait);
         }
 
+        if(input == Vector2.zero){
+            spriteRenderer.flipX = false;
+        }
+
         flipCoroutine = null;
 
     }
@@ -71,5 +75,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         rb.MovePosition(rb.position + input * (speed * Time.fixedDeltaTime));
+        Debug.Log(spriteRenderer.flipX);
     }
 }
