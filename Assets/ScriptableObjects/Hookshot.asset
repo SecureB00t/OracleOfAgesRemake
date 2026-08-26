@@ -15,3 +15,6 @@ MonoBehaviour:
   itemName: 
   icon: {fileID: 0}
   description: 
+  isStackable: 0
+  maxStackSize: 0
+  hasItem: 0
