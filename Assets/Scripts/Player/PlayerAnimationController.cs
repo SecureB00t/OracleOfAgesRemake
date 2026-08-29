@@ -10,6 +10,7 @@ public class PlayerAnimationController : MonoBehaviour
     private PlayerInputController inputController;
     private SpriteRenderer spriteRenderer;
     private MaterialPropertyBlock block;
+    private Vector2 lastDirection;
     Color[] palette;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,22 +32,32 @@ public class PlayerAnimationController : MonoBehaviour
         block.SetColor("_Palette2", palette[2]);
         block.SetFloat("_DamageFlash", 0f);
         spriteRenderer.SetPropertyBlock(block);
-        //mainTool.Initialize(inventory);
     }
 
 //TODO - Change so that only once place is flipping the sprite. Avoid overriding in multiple places.
 //TODO - Switch from flipping the scale of the whole object to just flipping the sprite. I think physics issues are happening with current implementation. Will have to adjust logic to rotate the weapon. Maybe change weapon scale only?
     void Update()
     {
-        myAnimator.SetFloat("Horizontal", inputController.directionalInput.x);
-        myAnimator.SetFloat("Vertical", inputController.directionalInput.y);
+        
         myAnimator.SetBool("isMoving", inputController.directionalInput != Vector2.zero);
 
         if (inputController.directionalInput != Vector2.zero)
         {
             myAnimator.SetFloat("LastHorizontal", inputController.directionalInput.x);
             myAnimator.SetFloat("LastVertical", inputController.directionalInput.y);
+
+            if (Mathf.Abs(inputController.directionalInput.x) > Mathf.Abs(inputController.directionalInput.y))
+            {
+                lastDirection = new Vector2(Mathf.Sign(inputController.directionalInput.x), 0);
+            }
+            else if (Mathf.Abs(inputController.directionalInput.y) > Mathf.Abs(inputController.directionalInput.x))
+            {
+                lastDirection = new Vector2(0, Mathf.Sign(inputController.directionalInput.y));
+            }
+            
         }
+        myAnimator.SetFloat("Horizontal", lastDirection.x);
+        myAnimator.SetFloat("Vertical", lastDirection.y);
 
         if (inputController.directionalInput.y != 0 && flipCoroutine == null)
         {
@@ -67,6 +78,7 @@ public class PlayerAnimationController : MonoBehaviour
 
         while(inputController.directionalInput.y != 0){
             transform.localScale = new Vector3(-1f, 1f, 1f);
+
             yield return new WaitForSeconds(timeToWait);
             if(inputController.directionalInput.y==0){break;}                            
             transform.localScale = new Vector3(1f, 1f, 1f);
