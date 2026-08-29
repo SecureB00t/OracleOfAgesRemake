@@ -161820,7 +161820,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractionController
   inventory: {fileID: 11400000, guid: 616cc0b8d8f12ae01804199cd819fbfa, type: 2}
-  dialogueHandler: {fileID: 782333181}
 --- !u!1 &447859639
 GameObject:
   m_ObjectHideFlags: 0
@@ -162815,6 +162814,7 @@ GameObject:
   - component: {fileID: 1611929959}
   - component: {fileID: 1611929960}
   - component: {fileID: 1611929961}
+  - component: {fileID: 1611929962}
   m_Layer: 0
   m_Name: Impa
   m_TagString: NPC
@@ -162923,6 +162923,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1611929962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611929957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630db94ef6174c3959a006ca84ffcecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCController
+  dialogueHandler: {fileID: 782333181}
+  dialogue: {fileID: 11400000, guid: e14a63f8dd3ad69fc94c38cc89c96aa2, type: 2}
 --- !u!1 &1661906528
 GameObject:
   m_ObjectHideFlags: 0
