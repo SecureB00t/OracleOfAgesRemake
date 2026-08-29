@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerInteractionController : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;  
+    [SerializeField] private Animator animationController;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,5 +19,15 @@ public class PlayerInteractionController : MonoBehaviour
              Destroy(collision.gameObject);
         }
     }
+
+    public void Interact()
+    {
+        //Vector2 direction = animationController.;
+        float rayDistance = 2f;
+        //Debug.DrawRay(transform.position,direction * rayDistance,Color.red, .1f);
+        Debug.Log("Interact Activated");
+    }
+
+
 
 }
