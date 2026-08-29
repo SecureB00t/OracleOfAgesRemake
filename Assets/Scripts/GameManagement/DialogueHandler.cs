@@ -17,4 +17,9 @@ public class DialogueHandler : MonoBehaviour
     {
         
     }
+
+    public void showText(){
+        dialogueBox.SetActive(true);
+        textMeshPro.text = "I'm a chud I'm a chud. I'm a fat little chud";
+    }
 }

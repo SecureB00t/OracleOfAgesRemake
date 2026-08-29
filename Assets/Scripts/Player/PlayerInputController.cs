@@ -5,10 +5,14 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : MonoBehaviour
 {
 
+    //TO DO: FIND A BETTER PLACE TO HANDLE THE TOOL INITIALIZATION. PLAYERINTERACTIONCONTROLLER AND THIS SCRIPT ARE LINKED IN A VERY UNINTUITVE WAY
     [SerializeField] public Tool mainTool;
     [SerializeField] public PlayerInteractionController interactionController;
     public Vector2 directionalInput;
 
+    void Start(){
+        mainTool.Initialize(interactionController.inventory);
+    }
     public void Move(InputAction.CallbackContext context)
     {
         directionalInput = context.ReadValue<Vector2>();

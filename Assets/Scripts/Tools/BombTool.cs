@@ -6,13 +6,15 @@ public class BombTool : Tool
 
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private Transform hodlPoint;
+    
     public override void Use()
     {
         if (currentBomb == null)
         {
+            Debug.Log("Point A");
             if (inventory.GetAmmo(itemData) <= 0)
                 return;
-
+            Debug.Log("Point B");
             GameObject bomb = Instantiate(bombPrefab, hodlPoint);
             bomb.transform.localPosition = Vector3.zero;
 
