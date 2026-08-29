@@ -20,7 +20,7 @@ public class PlayerCombatController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage(collision);
-            Knockback(collision);
+            //Knockback(collision);
         }
 
         
