@@ -9,18 +9,21 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField] public Tool mainTool;
     [SerializeField] public PlayerInteractionController interactionController;
     public Vector2 directionalInput;
+    public bool stopPlayerMovement = false;
 
     void Start(){
         mainTool.Initialize(interactionController.inventory);
     }
     public void Move(InputAction.CallbackContext context)
     {
-        directionalInput = context.ReadValue<Vector2>();
+        if(!stopPlayerMovement){
+            directionalInput = context.ReadValue<Vector2>();
+        }
     }
 
     public void MainTool(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !stopPlayerMovement)
         {
             mainTool.Use();
             GameManager.Instance.gameState.sequence++;
@@ -37,5 +40,6 @@ public class PlayerInputController : MonoBehaviour
             interactionController.Interact();
         }
     }
+
 
 }

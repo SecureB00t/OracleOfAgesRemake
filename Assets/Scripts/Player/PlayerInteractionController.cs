@@ -4,7 +4,7 @@ public class PlayerInteractionController : MonoBehaviour
 {
     [SerializeField] public Inventory inventory;  
     private Animator animationController;
-    [SerializeField] public DialogueHandler dialogueHandler;
+
 
     void Start(){
         animationController = GetComponent<Animator>();
@@ -47,7 +47,8 @@ public class PlayerInteractionController : MonoBehaviour
 
         if (hit.collider != null && hit.collider.CompareTag("NPC"))
         {
-            dialogueHandler.showText();
+            NPCController npc = hit.collider.GetComponent<NPCController>();
+            npc.Speak();
         }
 
         Debug.DrawRay(rayOrigin,direction* rayDistance,Color.red, .1f);
