@@ -15,8 +15,11 @@ MonoBehaviour:
   start: 0
   messages:
   - id: 0
-    text: My nam jeff
+    text: Hello there!
     next: 1
   - id: 1
-    text: what ur name
+    text: I am an NPC that is being used to test the dialogue system
+    next: 2
+  - id: 2
+    text: Annie Kay is so Beautiful!!
     next: -1
