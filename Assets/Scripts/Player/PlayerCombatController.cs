@@ -37,7 +37,6 @@ public class PlayerCombatController : MonoBehaviour
         health -= collision.gameObject.GetComponent<EnemyController>().damage;
         //StartCoroutine(animationController.DamageFlash());
         animationController.PlayDamageFlash();
-        Debug.Log("Player took damage! Current health: " + health);
         if (health <= 0){
             Die();
         }

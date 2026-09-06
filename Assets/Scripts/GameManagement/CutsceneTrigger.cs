@@ -6,6 +6,7 @@ public class CutsceneTrigger : MonoBehaviour
     [SerializeField] private int minSequence;
     [SerializeField] private int maxSequence;
     [SerializeField] private int sequenceToSet;
+    [SerializeField] private CutsceneController cutsceneController;
 
     private BoxCollider2D triggerCollider;
 
@@ -13,22 +14,23 @@ public class CutsceneTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player entered cutscene trigger");
             if (GameManager.Instance.gameState.sequence >= minSequence && GameManager.Instance.gameState.sequence <= maxSequence)
             {
                 GameManager.Instance.gameState.sequence = sequenceToSet;
-                Debug.Log("Cutscene triggered");
+                cutsceneController.SetCutsceneActive();
+                cutsceneController.EnteredTrigger();
             }
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        triggerCollider = GetComponent<BoxCollider2D>();
+        
     }
 
     void Awake()
     {
+        triggerCollider = GetComponent<BoxCollider2D>();
         if (GameManager.Instance.gameState.sequence < minSequence || GameManager.Instance.gameState.sequence > maxSequence)
         {
             triggerCollider.enabled = false;

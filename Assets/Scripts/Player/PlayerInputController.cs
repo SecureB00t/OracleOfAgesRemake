@@ -9,10 +9,12 @@ public class PlayerInputController : MonoBehaviour
     [SerializeField] public Tool mainTool;
     [SerializeField] public PlayerInteractionController interactionController;
     public Vector2 directionalInput;
-    public bool stopPlayerMovement = false;
+    private PlayerMovement playerMovement;
+    private bool stopPlayerMovement = false;
 
     void Start(){
         mainTool.Initialize(interactionController.inventory);
+        playerMovement = GetComponent<PlayerMovement>();
     }
     public void Move(InputAction.CallbackContext context)
     {
@@ -26,8 +28,6 @@ public class PlayerInputController : MonoBehaviour
         if (context.started && !stopPlayerMovement)
         {
             mainTool.Use();
-            GameManager.Instance.gameState.sequence++;
-            Debug.Log("Sequence: " + GameManager.Instance.gameState.sequence);
         }
 
     }
@@ -36,10 +36,21 @@ public class PlayerInputController : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Button Pressed");
             interactionController.Interact();
         }
     }
 
+    public void StopPlayerMovement(){
+        stopPlayerMovement = true;
+        playerMovement.enabled = false;
+        directionalInput = Vector2.zero;
+    }
+
+    public void ResumePlayerMovement(){
+        directionalInput = Vector2.zero;
+        stopPlayerMovement = false;
+        playerMovement.enabled = true;
+
+    }
 
 }
