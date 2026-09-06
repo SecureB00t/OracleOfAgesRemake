@@ -11,10 +11,8 @@ public class BombTool : Tool
     {
         if (currentBomb == null)
         {
-            Debug.Log("Point A");
             if (inventory.GetAmmo(itemData) <= 0)
                 return;
-            Debug.Log("Point B");
             GameObject bomb = Instantiate(bombPrefab, hodlPoint);
             bomb.transform.localPosition = Vector3.zero;
 

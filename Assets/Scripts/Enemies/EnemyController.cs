@@ -17,7 +17,6 @@ public class EnemyController : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            Debug.Log("Enemy hit by weapon trigger!");
         }
     }
 
@@ -28,7 +27,6 @@ public class EnemyController : MonoBehaviour
 
     public virtual void MoveEnemy()
     {
-       // Debug.Log("Enemy is moving.");
     }
 
     public void Flash()

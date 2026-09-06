@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_forward
+  m_Name: anim_right
   serializedVersion: 8
   m_Legacy: 0
   m_Compressed: 0
@@ -17,6 +17,36 @@ AnimationClip:
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves:
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_FlipX
+    path: Sprite/Octorok_0
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -42,11 +72,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -856038216008697133, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
+      value: {fileID: 4027839303766080437, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
     - time: 0.33333334
-      value: {fileID: 7862256625435699934, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
-    - time: 0.68333334
-      value: {fileID: 7862256625435699934, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
+      value: {fileID: 1484558949937559846, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
+    - time: 0.6666667
+      value: {fileID: 1484558949937559846, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
     attribute: m_Sprite
     path: Sprite/Octorok_0
     classID: 212
@@ -59,6 +89,16 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
+    - serializedVersion: 2
+      path: 812495272
+      attribute: 555744692
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+      metaData: 0
     - serializedVersion: 2
       path: 812495272
       attribute: 1444465954
@@ -80,15 +120,15 @@ AnimationClip:
       isSerializeReferenceCurve: 0
       metaData: 0
     pptrCurveMapping:
-    - {fileID: -856038216008697133, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
-    - {fileID: 7862256625435699934, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
-    - {fileID: 7862256625435699934, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
+    - {fileID: 4027839303766080437, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
+    - {fileID: 1484558949937559846, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
+    - {fileID: 1484558949937559846, guid: 4dcb1215f8a6d76bbb4545f6b031375e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.7
+    m_StopTime: 0.68333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -104,6 +144,36 @@ AnimationClip:
     m_HeightFromFeet: 0
     m_Mirror: 0
   m_EditorCurves:
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.6666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_FlipX
+    path: Sprite/Octorok_0
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2

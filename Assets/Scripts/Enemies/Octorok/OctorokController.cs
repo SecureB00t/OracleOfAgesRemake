@@ -107,32 +107,32 @@ public class OctorokController : EnemyController
         {
             case 0:
                 movement = Vector2.up;
-                spriteRenderer.flipY = true; // Flip the sprite vertically when moving up
-                spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving up
+                //spriteRenderer.flipY = true; // Flip the sprite vertically when moving up
+                //spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving up
                 break;
             case 1:
                 movement = Vector2.down;
-                spriteRenderer.flipY = false; // Unflip the sprite when moving down
-                spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving down
+               //spriteRenderer.flipY = false; // Unflip the sprite when moving down
+                //spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving down
                 break;
             case 2:
                 movement = Vector2.left;
-                spriteRenderer.flipX = false; // Flip the sprite horizontally when moving left
-                spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving left
+                //spriteRenderer.flipX = false; // Flip the sprite horizontally when moving left
+                //spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving left
                 break;
             case 3:
                 movement = Vector2.right;
-                spriteRenderer.flipX = true; // Unflip the sprite when moving right
-                spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving right
+                //spriteRenderer.flipX = true; // Unflip the sprite when moving right
+                //spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving right
                 break;
         }
 
         rb.linearVelocity = movement * speed;
-        enemyAnimator.SetFloat("Horizontal", Mathf.Abs(movement.x));
-        enemyAnimator.SetFloat("Vertical", Mathf.Abs(movement.y));
+        enemyAnimator.SetFloat("Horizontal", movement.x);
+        enemyAnimator.SetFloat("Vertical", movement.y);
     }
 
-    private void onDestroy()
+    private void OnDestroy()
     {
         if (moveCoroutine != null)
         {
