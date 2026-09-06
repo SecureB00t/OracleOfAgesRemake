@@ -9,14 +9,14 @@ public class DialogueHandler : MonoBehaviour
     private Message message = null;
     private PlayerInputController inputController;
     private Coroutine typewriter;
-    private float charactersPerSecond = 10;
+    private float charactersPerSecond = 20;
     public bool isTyping;
 
     [SerializeField] public GameObject dialogueBox;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inputController = FindFirstObjectByType<PlayerInputController>();
+        inputController = FindAnyObjectByType<PlayerInputController>();
         textMeshPro = GetComponentInChildren<TMP_Text>();
         textMeshPro.text = "Hello, World!";
         dialogueBox.SetActive(false);
@@ -37,7 +37,7 @@ public class DialogueHandler : MonoBehaviour
 //I HATE MAGIC NUMBERS. FIND A BETTER WAY ASSHOLE
     public void HandleDialogue(Dialogue dialogue){ //Readability issue here. Please fix when you get around to it
         
-        inputController.stopPlayerMovement = true;
+        inputController.StopPlayerMovement();
 
         if (isTyping){
             StopCoroutine(typewriter);
@@ -61,7 +61,7 @@ public class DialogueHandler : MonoBehaviour
         if (currentMessage == -1)
         {
             dialogueBox.SetActive(false);
-            inputController.stopPlayerMovement = false;
+            inputController.ResumePlayerMovement();
         }
 
 
