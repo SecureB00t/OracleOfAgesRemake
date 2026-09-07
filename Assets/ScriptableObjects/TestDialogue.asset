@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2652fa84a9998ff59f8b9c0f6264a08, type: 3}
   m_Name: TestDialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueObject
-  start: 0
+  start: 6
   messages:
   - id: 0
     text: That was frightening! I was suddenly attacked...
