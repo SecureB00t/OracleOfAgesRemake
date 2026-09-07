@@ -8,6 +8,6 @@ public class NPCController : MonoBehaviour
         dialogueHandler = FindAnyObjectByType<DialogueHandler>();
     }
     public void Speak(){
-        dialogueHandler.HandleDialogue(dialogue);
+        dialogueHandler.HandleDialogue(dialogue, this);
     }
 }

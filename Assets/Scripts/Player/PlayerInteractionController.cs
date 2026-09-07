@@ -4,10 +4,13 @@ public class PlayerInteractionController : MonoBehaviour
 {
     [SerializeField] public Inventory inventory;  
     private Animator animationController;
+    public NPCController speakingNPC;
+    private DialogueHandler dialogueHandler;
 
 
     void Start(){
         animationController = GetComponent<Animator>();
+        dialogueHandler = FindAnyObjectByType<DialogueHandler>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -49,6 +52,14 @@ public class PlayerInteractionController : MonoBehaviour
         {
             NPCController npc = hit.collider.GetComponent<NPCController>();
             npc.Speak();
+        }
+        else if (dialogueHandler.speakingNPC != null)
+        {
+            dialogueHandler.speakingNPC.Speak();
+            // if (dialogueHandler.dialogueFinished)
+            // {
+            //     speakingNPC = null;
+            // }
         }
 
         Debug.DrawRay(rayOrigin,direction* rayDistance,Color.red, .1f);
