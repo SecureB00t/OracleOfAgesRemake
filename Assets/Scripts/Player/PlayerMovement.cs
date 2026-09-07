@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerInputController inputController;
     private Rigidbody2D rb;
+    public Vector2 deltaPosition;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputController.directionalInput != Vector2.zero)
         {
-            rb.MovePosition(rb.position + inputController.directionalInput * speed * Time.fixedDeltaTime);
+            Vector2 targetPosition = rb.position + inputController.directionalInput * speed * Time.fixedDeltaTime;
+            deltaPosition = targetPosition - rb.position;
+            rb.MovePosition(targetPosition);
+
         }
     }
 
