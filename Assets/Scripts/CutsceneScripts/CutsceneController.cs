@@ -101,6 +101,11 @@ public class CutsceneController : MonoBehaviour
         if (preCutsceneDialogue) {
             dialogueNPC.Speak();
         }
+        while (!dialogueHandler.dialogueFinished)
+        {
+            yield return null;
+        }
+        
         yield return StartCoroutine(MovePlayerToStagingPosition());
         timeline.Play();
     }

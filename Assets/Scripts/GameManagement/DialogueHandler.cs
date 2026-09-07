@@ -12,6 +12,7 @@ public class DialogueHandler : MonoBehaviour
     private float charactersPerSecond = 20;
     public bool isTyping;
     public bool dialogueFinished = true;
+    public NPCController speakingNPC;
     private int? dialogueStart; //used so I don't have to manually reset the dialogue start point on reset. Maybe change back to changing the dialogue scriptable object directly for the full release? Save tracking?
 
     [SerializeField] public GameObject dialogueBox;
@@ -37,13 +38,12 @@ public class DialogueHandler : MonoBehaviour
     // }
 
 //I HATE MAGIC NUMBERS. FIND A BETTER WAY ASSHOLE
-    public void HandleDialogue(Dialogue dialogue){ //Readability issue here. Please fix when you get around to it
+    public void HandleDialogue(Dialogue dialogue, NPCController npc){ //Readability issue here. Please fix when you get around to it
         
         inputController.StopPlayerMovement();
 
         if (dialogueStart == null)
         {
-            Debug.Log("Check for nullable");
             dialogueStart = dialogue.start;
         }
 
@@ -55,7 +55,9 @@ public class DialogueHandler : MonoBehaviour
             return;
         }
 
-        if(!dialogueBox.activeSelf){ //Go to start of message if no dialogue is displayed (Bad approach but whatever)
+        if(dialogueFinished){ //Go to start of message if no dialogue is displayed (Bad approach but whatever)
+            dialogueFinished = false;
+            speakingNPC = npc;
             currentMessage = dialogueStart;
             //currentMessage = dialogue.start;
         }
@@ -78,6 +80,8 @@ public class DialogueHandler : MonoBehaviour
         {
             dialogueBox.SetActive(false);
             inputController.ResumePlayerMovement();
+            speakingNPC = null;
+            dialogueFinished = true;
         }
 
 
