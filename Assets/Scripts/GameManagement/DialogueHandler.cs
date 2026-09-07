@@ -5,12 +5,14 @@ using System.Collections;
 public class DialogueHandler : MonoBehaviour
 {
     public TMP_Text textMeshPro;
-    private int currentMessage;
+    private int? currentMessage;
     private Message message = null;
     private PlayerInputController inputController;
     private Coroutine typewriter;
     private float charactersPerSecond = 20;
     public bool isTyping;
+    public bool dialogueFinished = true;
+    private int? dialogueStart; //used so I don't have to manually reset the dialogue start point on reset. Maybe change back to changing the dialogue scriptable object directly for the full release? Save tracking?
 
     [SerializeField] public GameObject dialogueBox;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,6 +41,12 @@ public class DialogueHandler : MonoBehaviour
         
         inputController.StopPlayerMovement();
 
+        if (dialogueStart == null)
+        {
+            Debug.Log("Check for nullable");
+            dialogueStart = dialogue.start;
+        }
+
         if (isTyping){
             StopCoroutine(typewriter);
             textMeshPro.maxVisibleCharacters = message.text.Length;
@@ -48,7 +56,8 @@ public class DialogueHandler : MonoBehaviour
         }
 
         if(!dialogueBox.activeSelf){ //Go to start of message if no dialogue is displayed (Bad approach but whatever)
-            currentMessage = dialogue.start;
+            currentMessage = dialogueStart;
+            //currentMessage = dialogue.start;
         }
 
         else{ //Find the next message from the current message (I don't understand lambda functions)
@@ -58,6 +67,13 @@ public class DialogueHandler : MonoBehaviour
 
         message = dialogue.messages.Find(m => m.id == currentMessage); //Set the actual current message
 
+
+        if (message != null){
+            if (message.continuePoint != -1)
+            {
+                dialogueStart = message.continuePoint;
+            }
+        }
         if (currentMessage == -1)
         {
             dialogueBox.SetActive(false);
@@ -71,7 +87,6 @@ public class DialogueHandler : MonoBehaviour
             typewriter= StartCoroutine(TypewriterEffect(message.text));
         }
 
-        
     }
 
 
