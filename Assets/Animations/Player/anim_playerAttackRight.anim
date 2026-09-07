@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: anim_playerAttackLeft
+  m_Name: anim_playerAttackRight
   serializedVersion: 8
   m_Legacy: 0
   m_Compressed: 0
@@ -126,7 +126,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -145,6 +145,17 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
+      value: {fileID: -8270971619178943451, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
+    - time: 0.083333336
+      value: {fileID: 4057228866028699850, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
+    attribute: m_Sprite
+    path: Sprite
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
       value: {fileID: -6129451637809875507, guid: 8b83c1bf9a4e3c46889c1dd97ac64ca9, type: 3}
     - time: 0.083333336
       value: {fileID: -6989977366938945959, guid: 8b83c1bf9a4e3c46889c1dd97ac64ca9, type: 3}
@@ -154,17 +165,6 @@ AnimationClip:
       value: {fileID: 831626395856293205, guid: 8b83c1bf9a4e3c46889c1dd97ac64ca9, type: 3}
     attribute: m_Sprite
     path: Weapon/Sword
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: -8270971619178943451, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
-    - time: 0.083333336
-      value: {fileID: 4057228866028699850, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
-    attribute: m_Sprite
-    path: Sprite
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -216,16 +216,6 @@ AnimationClip:
       isSerializeReferenceCurve: 0
       metaData: 0
     - serializedVersion: 2
-      path: 1703792215
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-      metaData: 0
-    - serializedVersion: 2
       path: 850496168
       attribute: 0
       script: {fileID: 0}
@@ -235,13 +225,23 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
       metaData: 0
+    - serializedVersion: 2
+      path: 1703792215
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+      metaData: 0
     pptrCurveMapping:
+    - {fileID: -8270971619178943451, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
+    - {fileID: 4057228866028699850, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
     - {fileID: -6129451637809875507, guid: 8b83c1bf9a4e3c46889c1dd97ac64ca9, type: 3}
     - {fileID: -6989977366938945959, guid: 8b83c1bf9a4e3c46889c1dd97ac64ca9, type: 3}
     - {fileID: 7418655020816605813, guid: 8b83c1bf9a4e3c46889c1dd97ac64ca9, type: 3}
     - {fileID: 831626395856293205, guid: 8b83c1bf9a4e3c46889c1dd97ac64ca9, type: 3}
-    - {fileID: -8270971619178943451, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
-    - {fileID: 4057228866028699850, guid: e1f78c4670595815eb8c4f8f96e13a27, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -263,27 +263,6 @@ AnimationClip:
     m_HeightFromFeet: 0
     m_Mirror: 0
   m_EditorCurves:
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_Enabled
-    path: Weapon/Sword
-    classID: 212
-    script: {fileID: 0}
-    flags: 0
   - serializedVersion: 2
     curve:
       serializedVersion: 2
@@ -468,6 +447,27 @@ AnimationClip:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: Weapon/Sword
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       - serializedVersion: 3
         time: 0.35
         value: 0
@@ -491,7 +491,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103

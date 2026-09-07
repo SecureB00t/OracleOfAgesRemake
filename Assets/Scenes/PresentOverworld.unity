@@ -119,6 +119,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &50547991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 50547993}
+  - component: {fileID: 50547992}
+  m_Layer: 0
+  m_Name: CutsceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &50547992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50547991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ff490669b411a5797b35153f80ed49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CutsceneController
+  timeline: {fileID: 1567145944}
+  stagingPosition: {fileID: 718915993}
+  movementSpeed: 5
+  player: {fileID: 392176524}
+  actors:
+  - {fileID: 345508986}
+  - {fileID: 1282965736}
+  - {fileID: 1920848392}
+--- !u!4 &50547993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50547991}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 88.65361, y: 51.49846, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &65339381
 GameObject:
   m_ObjectHideFlags: 0
@@ -161258,6 +161310,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 392176527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &345508986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 131956184369382857, guid: 08e344aa6d1d1fc68bdb45b76494efbd, type: 3}
+  m_PrefabInstance: {fileID: 744767039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &392176524
 GameObject:
   m_ObjectHideFlags: 0
@@ -161315,7 +161372,7 @@ Transform:
   m_GameObject: {fileID: 392176524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.4375, y: 54.5625, z: 0}
+  m_LocalPosition: {x: 87.5, y: 46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -161521,10 +161578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2072919b2016a95979289b26eaed67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputController
-  mainTool: {fileID: 1497380599}
+  mainTool: {fileID: 1661906533}
   interactionController: {fileID: 392176536}
   directionalInput: {x: 0, y: 0}
-  stopPlayerMovement: 0
 --- !u!114 &392176534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161537,6 +161593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dae7b2b000742f3990c86a7fddcbea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
+  myAnimator: {fileID: 0}
 --- !u!114 &392176535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162489,6 +162546,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1282965736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 131956184369382857, guid: 08e344aa6d1d1fc68bdb45b76494efbd, type: 3}
+  m_PrefabInstance: {fileID: 1467727402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1295993801
 GameObject:
   m_ObjectHideFlags: 0
@@ -162735,7 +162797,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: ae987fa3e1bea773ab72fa0b19b54a84, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -162752,8 +162814,12 @@ PlayableDirector:
     value: {fileID: 247139355}
   - key: {fileID: -4384267231480108844, guid: ae987fa3e1bea773ab72fa0b19b54a84, type: 2}
     value: {fileID: 247139355}
-  - key: {fileID: -8666010632574768729, guid: ae987fa3e1bea773ab72fa0b19b54a84, type: 2}
+  - key: {fileID: -5258288495902098629, guid: ae987fa3e1bea773ab72fa0b19b54a84, type: 2}
     value: {fileID: 392176525}
+  - key: {fileID: -578727945003407815, guid: ae987fa3e1bea773ab72fa0b19b54a84, type: 2}
+    value: {fileID: 392176525}
+  - key: {fileID: 3334441169029279697, guid: ae987fa3e1bea773ab72fa0b19b54a84, type: 2}
+    value: {fileID: 1611929963}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1567145945
@@ -162864,6 +162930,7 @@ GameObject:
   - component: {fileID: 1611929960}
   - component: {fileID: 1611929961}
   - component: {fileID: 1611929962}
+  - component: {fileID: 1611929963}
   m_Layer: 0
   m_Name: Impa
   m_TagString: NPC
@@ -162986,6 +163053,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCController
   dialogueHandler: {fileID: 782333181}
   dialogue: {fileID: 11400000, guid: e14a63f8dd3ad69fc94c38cc89c96aa2, type: 2}
+--- !u!114 &1611929963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611929957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalReceiver
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 574066eb0d403b621ad217cc3227b6d7, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1611929962}
+          m_TargetAssemblyTypeName: NPCController, Assembly-CSharp
+          m_MethodName: Speak
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1661906528
 GameObject:
   m_ObjectHideFlags: 0
@@ -163075,7 +163172,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.375}
+  m_Size: {x: 0.4375, y: 0.9375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -163118,9 +163215,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.375}
-    newSize: {x: 1, y: 0.375}
+    pivot: {x: 0.42857146, y: 0.4666667}
+    oldSize: {x: 0.4375, y: 0.9375}
+    newSize: {x: 0.4375, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -163372,6 +163469,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722352708}
   m_CullTransparentMesh: 1
+--- !u!1 &1920848392 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 131956184369382857, guid: 08e344aa6d1d1fc68bdb45b76494efbd, type: 3}
+  m_PrefabInstance: {fileID: 704099287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1961659043
 GameObject:
   m_ObjectHideFlags: 0
@@ -163476,6 +163578,7 @@ MonoBehaviour:
   minSequence: 0
   maxSequence: 3
   sequenceToSet: 5
+  cutsceneController: {fileID: 50547992}
 --- !u!61 &1978276010
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163684,11 +163787,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3792519203614757552, guid: 08e344aa6d1d1fc68bdb45b76494efbd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.5
+      value: 112.625
       objectReference: {fileID: 0}
     - target: {fileID: 3792519203614757552, guid: 08e344aa6d1d1fc68bdb45b76494efbd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 39.125
+      value: 49.875
       objectReference: {fileID: 0}
     - target: {fileID: 3792519203614757552, guid: 08e344aa6d1d1fc68bdb45b76494efbd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -163742,3 +163845,4 @@ SceneRoots:
   - {fileID: 782333180}
   - {fileID: 1249711472}
   - {fileID: 1567145945}
+  - {fileID: 50547993}

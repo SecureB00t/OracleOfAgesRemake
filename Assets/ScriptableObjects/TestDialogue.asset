@@ -15,11 +15,32 @@ MonoBehaviour:
   start: 0
   messages:
   - id: 0
-    text: Hello there!
+    text: That was frightening! I was suddenly attacked...
     next: 1
+    continuePoint: 0
   - id: 1
-    text: I am an NPC that is being used to test the dialogue system
+    text: Thank you, traveler. What is your name?
     next: 2
+    continuePoint: 0
   - id: 2
-    text: Annie Kay is so Beautiful!!
+    text: Link, is it? I see a triforce on the back of your left hand. That is the
+      sign of a Hyrulean hero!
+    next: 3
+    continuePoint: 0
+  - id: 3
+    text: 'That must be why the beasts fled. '
+    next: 4
+    continuePoint: 0
+  - id: 4
+    text: I am Impa, nurse to Hyrule's Princess Zelda. I am looking for a singer
+      named Nayru.
+    next: 5
+    continuePoint: 0
+  - id: 5
+    text: Will you help me look, Link? I'd feel safer with you nearby.
     next: -1
+    continuePoint: 0
+  - id: 6
+    text: HELLLLP!!!!
+    next: -1
+    continuePoint: 0
