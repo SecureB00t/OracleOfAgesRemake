@@ -15,6 +15,9 @@ public class CutsceneController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject[] actors;
 
+    [Header("Extra Settings:")]
+    [SerializeField] private bool preCutsceneDialogue = false;
+    [SerializeField] private NPCController dialogueNPC;
     private PlayerInputController inputController;
     private Animator playerAnimator;
     private PlayerAnimationController animationController;
@@ -95,6 +98,9 @@ public class CutsceneController : MonoBehaviour
 
     private IEnumerator StartCutscene(){
         StopPlayerControl();
+        if (preCutsceneDialogue) {
+            dialogueNPC.Speak();
+        }
         yield return StartCoroutine(MovePlayerToStagingPosition());
         timeline.Play();
     }
