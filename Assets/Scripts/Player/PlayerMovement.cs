@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
             rb.MovePosition(targetPosition);
 
         }
+        else
+        {
+            deltaPosition = Vector2.zero;
+        }
     }
 
 }
