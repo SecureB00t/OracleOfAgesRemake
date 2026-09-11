@@ -22,6 +22,7 @@ public class CutsceneController : MonoBehaviour
     private Animator playerAnimator;
     private PlayerAnimationController animationController;
     private DialogueHandler dialogueHandler;
+    private NPCStateController npcStateController;
 
     private bool cutsceneActive;
     private bool cutscenePlaying;
@@ -32,6 +33,7 @@ public class CutsceneController : MonoBehaviour
         animationController = FindAnyObjectByType<PlayerAnimationController>();
         playerAnimator = player.GetComponent<Animator>();
         dialogueHandler = FindAnyObjectByType<DialogueHandler>();
+        npcStateController = FindAnyObjectByType<NPCStateController>();
     }
 
     public void SetCutsceneActive(){
@@ -138,5 +140,8 @@ public class CutsceneController : MonoBehaviour
         {
             ResumePlayerControl();
         }
+        npcStateController.ChangeState(NPCState.Following);
+
+
     }
 }
