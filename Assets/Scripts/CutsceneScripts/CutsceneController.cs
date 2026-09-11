@@ -140,7 +140,7 @@ public class CutsceneController : MonoBehaviour
         {
             ResumePlayerControl();
         }
-        npcStateController.ChangeState(NPCState.Following);
+        //npcStateController.ChangeState(NPCState.Following);
 
 
     }
