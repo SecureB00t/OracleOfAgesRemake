@@ -103,7 +103,7 @@ public class CutsceneController : MonoBehaviour
         if (preCutsceneDialogue) {
             dialogueNPC.Speak();
         }
-        while (!dialogueHandler.dialogueFinished)
+        while (dialogueHandler.dialogueStarted)
         {
             yield return null;
         }

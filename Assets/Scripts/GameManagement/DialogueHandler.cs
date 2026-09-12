@@ -11,9 +11,9 @@ public class DialogueHandler : MonoBehaviour
     private Coroutine typewriter;
     private float charactersPerSecond = 20;
     public bool isTyping;
-    public bool dialogueFinished = true;
+    public bool dialogueStarted = false;
     public NPCController speakingNPC;
-    private int? dialogueStart; //used so I don't have to manually reset the dialogue start point on reset. Maybe change back to changing the dialogue scriptable object directly for the full release? Save tracking?
+    private int? dialogueStartPoint; //used so I don't have to manually reset the dialogue start point on reset. Maybe change back to changing the dialogue scriptable object directly for the full release? Save tracking?
     private DialogueContext dialogueContext;
 
     [SerializeField] public GameObject dialogueBox;
@@ -41,65 +41,86 @@ public class DialogueHandler : MonoBehaviour
 //I HATE MAGIC NUMBERS. FIND A BETTER WAY ASSHOLE
     public void HandleDialogue(Dialogue dialogue, NPCController npc){ //Readability issue here. Please fix when you get around to it. Yeah, now it needs a major refactor
         
-        inputController.StopPlayerMovement();
+            inputController.StopPlayerMovement();
+
+            if (!dialogueStarted){
+                StartDialogue(npc, dialogue);
+            }
+            else if (isTyping){
+                SkipTextToEnd();
+            }
+            else if (currentMessage == -1){
+                EndDialogue();
+            }
+            else{
+                NextMessage(npc, dialogue);
+            }
+        }
+
         
+        // if (dialogueFinished){
+        //     dialogueFinished = false;
+        //     speakingNPC = npc;
+        //     currentMessage = dialogue.start;
+        //     dialogueContext = new DialogueContext(speakingNPC, this);
+        // }
 
-        if (dialogueStart == null)
-        {
-            dialogueStart = dialogue.start;
-        }
+        // if (dialogueStart == null)
+        // {
+        //     dialogueStart = dialogue.start;
+        // }
 
-        if (isTyping){
-            StopCoroutine(typewriter);
-            textMeshPro.maxVisibleCharacters = message.text.Length;
-            isTyping = false;
-            textMeshPro.text = message.text;
-            return;
-        }
+        // if (isTyping){
+        //     StopCoroutine(typewriter);
+        //     textMeshPro.maxVisibleCharacters = message.text.Length;
+        //     isTyping = false;
+        //     textMeshPro.text = message.text;
+        //     return;
+        // }
 
-        if(dialogueFinished){ //Go to start of message if no dialogue is displayed (Bad approach but whatever)
-            dialogueFinished = false;
-            speakingNPC = npc;
-            currentMessage = dialogueStart;
-            dialogueContext = new DialogueContext(speakingNPC, this);
-            //currentMessage = dialogue.start;
-        }
+        // if(dialogueFinished){ //Go to start of message if no dialogue is displayed (Bad approach but whatever)
+        //     dialogueFinished = false;
+        //     speakingNPC = npc;
+        //     currentMessage = dialogueStart;
+        //     dialogueContext = new DialogueContext(speakingNPC, this);
+        //     //currentMessage = dialogue.start;
+        // }
 
-        else{ //Find the next message from the current message (I don't understand lambda functions)
-            message = dialogue.messages.Find(m => m.id == currentMessage);
-            currentMessage = message.next;
-        }
+        // else{ //Find the next message from the current message (I don't understand lambda functions)
+        //     message = dialogue.messages.Find(m => m.id == currentMessage);
+        //     currentMessage = message.next;
+        // }
 
-        message = dialogue.messages.Find(m => m.id == currentMessage); //Set the actual current message
-
-
-        if (message != null){
-            if (message.continuePoint != -1)
-            {
-                dialogueStart = message.continuePoint;
-            }
-        }
-        if (currentMessage == -1)
-        {
-            dialogueBox.SetActive(false);
-            inputController.ResumePlayerMovement();
-            speakingNPC = null;
-            dialogueFinished = true;
-
-        }
+        // message = dialogue.messages.Find(m => m.id == currentMessage); //Set the actual current message
 
 
-        else if (!isTyping)
-        { //Display next message
-            foreach(DialogueAction action in message.actions)
-            {
-                action.Execute(dialogueContext);
-            }
-            dialogueBox.SetActive(true);
-            typewriter= StartCoroutine(TypewriterEffect(message.text));
-        }
+        // if (message != null){
+        //     if (message.continuePoint != -1)
+        //     {
+        //         dialogueStart = message.continuePoint;
+        //     }
+        // }
+        // if (currentMessage == -1)
+        // {
+        //     dialogueBox.SetActive(false);
+        //     inputController.ResumePlayerMovement();
+        //     speakingNPC = null;
+        //     dialogueFinished = true;
 
-    }
+        // }
+
+
+        // else if (!isTyping)
+        // { //Display next message
+        //     foreach(DialogueAction action in message.actions)
+        //     {
+        //         action.Execute(dialogueContext);
+        //     }
+        //     dialogueBox.SetActive(true);
+        //     typewriter= StartCoroutine(TypewriterEffect(message.text));
+        // }
+
+    
 
 
 
@@ -131,6 +152,62 @@ public class DialogueHandler : MonoBehaviour
         }
         isTyping = false;
     }
+
+
+
+    private void StartDialogue(NPCController npc, Dialogue dialogue){
+        //start dialogue
+        dialogueStarted = true;
+        speakingNPC = npc;
+        dialogueStartPoint = npc.dialogueStartPoint;
+        currentMessage = dialogueStartPoint;
+        dialogueContext = new DialogueContext(npc, this);
+        dialogueBox.SetActive(true);
+        NextMessage(npc, dialogue);
+    }
+
+    private void EndDialogue(){
+        //end dialogue
+        dialogueStarted = false;
+        dialogueStartPoint = null;
+        speakingNPC = null;
+        currentMessage = null;
+        dialogueContext = null;
+        dialogueBox.SetActive(false);
+        ExecuteDialogueActions();
+        inputController.ResumePlayerMovement();
+    }
+
+    private void NextMessage(NPCController npc, Dialogue dialogue){
+        //next message
+        message = dialogue.messages.Find(m => m.id == currentMessage);
+        typewriter = StartCoroutine(TypewriterEffect(message.text));
+
+        if (message != null){
+            if (message.continuePoint != -1)
+            {
+                npc.dialogueStartPoint = message.continuePoint;
+            }
+        }
+
+        currentMessage = message.next;
+    }
+
+    private void SkipTextToEnd(){
+        //stop typewriter effect and display full text
+        StopCoroutine(typewriter);
+        textMeshPro.maxVisibleCharacters = message.text.Length;
+        isTyping = false;
+        textMeshPro.text = message.text;
+    }
+
+    private void ExecuteDialogueActions(){
+        foreach(DialogueAction action in message.actions)
+        {
+            action.Execute(dialogueContext);
+        }
+    }
 }
+
 
 
