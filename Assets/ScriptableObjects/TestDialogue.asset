@@ -18,29 +18,37 @@ MonoBehaviour:
     text: That was frightening! I was suddenly attacked...
     next: 1
     continuePoint: 0
+    actions: []
   - id: 1
     text: Thank you, traveler. What is your name?
     next: 2
     continuePoint: 0
+    actions: []
   - id: 2
     text: Link, is it? I see a triforce on the back of your left hand. That is the
       sign of a Hyrulean hero!
     next: 3
     continuePoint: 0
+    actions: []
   - id: 3
     text: 'That must be why the beasts fled. '
     next: 4
     continuePoint: 0
+    actions: []
   - id: 4
     text: I am Impa, nurse to Hyrule's Princess Zelda. I am looking for a singer
       named Nayru.
     next: 5
     continuePoint: 0
+    actions: []
   - id: 5
     text: Will you help me look, Link? I'd feel safer with you nearby.
     next: -1
     continuePoint: 0
+    actions:
+    - {fileID: 11400000, guid: 3cd4710dfb99d816db41a83696923c05, type: 2}
   - id: 6
     text: HELLLLP!!!!
     next: -1
     continuePoint: 0
+    actions: []

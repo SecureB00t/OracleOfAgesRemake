@@ -11,6 +11,7 @@ public class PlayerInputController : MonoBehaviour
     public Vector2 directionalInput;
     private PlayerMovement playerMovement;
     private bool stopPlayerMovement = false;
+    private bool stopInteract = false;
 
     void Start(){
         mainTool.Initialize(interactionController.inventory);
@@ -34,7 +35,7 @@ public class PlayerInputController : MonoBehaviour
 
     public void Interact(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !stopInteract)
         {
             interactionController.Interact();
         }
@@ -44,6 +45,14 @@ public class PlayerInputController : MonoBehaviour
         stopPlayerMovement = true;
         playerMovement.enabled = false;
         directionalInput = Vector2.zero;
+    }
+
+    public void StopInteractive(){
+        stopInteract = true;
+    }
+
+    public void ResumeInteractive(){
+        stopInteract = false;
     }
 
     public void ResumePlayerMovement(){

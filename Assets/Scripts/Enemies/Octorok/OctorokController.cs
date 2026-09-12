@@ -11,6 +11,9 @@ public class OctorokController : EnemyController
     private Animator enemyAnimator;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private float speed = 2f;
+    [SerializeField] private float initialHorizontal;
+    [SerializeField] private float initialVertical;
+    [SerializeField] private bool lobotomized = false;
     Color[] palette;
 
 
@@ -31,6 +34,8 @@ public class OctorokController : EnemyController
         enemyAnimator = GetComponentInParent<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         palette = SpritePaletteProcessor.GetPalette(spriteRenderer.sprite.texture);
+        enemyAnimator.SetFloat("Horizontal", initialHorizontal);
+        enemyAnimator.SetFloat("Vertical", initialVertical);
 
 
         MaterialPropertyBlock block = new MaterialPropertyBlock();
@@ -99,37 +104,38 @@ public class OctorokController : EnemyController
     private void Move()
     {
 
+        if (!lobotomized){
+            int direction = Random.Range(0, 4); // 0 = up, 1 = down, 2 = left, 3 = right
+            Vector2 movement = Vector2.zero;
 
-        int direction = Random.Range(0, 4); // 0 = up, 1 = down, 2 = left, 3 = right
-        Vector2 movement = Vector2.zero;
+            switch (direction)
+            {
+                case 0:
+                    movement = Vector2.up;
+                    //spriteRenderer.flipY = true; // Flip the sprite vertically when moving up
+                    //spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving up
+                    break;
+                case 1:
+                    movement = Vector2.down;
+                //spriteRenderer.flipY = false; // Unflip the sprite when moving down
+                    //spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving down
+                    break;
+                case 2:
+                    movement = Vector2.left;
+                    //spriteRenderer.flipX = false; // Flip the sprite horizontally when moving left
+                    //spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving left
+                    break;
+                case 3:
+                    movement = Vector2.right;
+                    //spriteRenderer.flipX = true; // Unflip the sprite when moving right
+                    //spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving right
+                    break;
+            }
 
-        switch (direction)
-        {
-            case 0:
-                movement = Vector2.up;
-                //spriteRenderer.flipY = true; // Flip the sprite vertically when moving up
-                //spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving up
-                break;
-            case 1:
-                movement = Vector2.down;
-               //spriteRenderer.flipY = false; // Unflip the sprite when moving down
-                //spriteRenderer.flipX = false; // Ensure the sprite is not flipped horizontally when moving down
-                break;
-            case 2:
-                movement = Vector2.left;
-                //spriteRenderer.flipX = false; // Flip the sprite horizontally when moving left
-                //spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving left
-                break;
-            case 3:
-                movement = Vector2.right;
-                //spriteRenderer.flipX = true; // Unflip the sprite when moving right
-                //spriteRenderer.flipY = false; // Ensure the sprite is not flipped vertically when moving right
-                break;
+            rb.linearVelocity = movement * speed;
+            enemyAnimator.SetFloat("Horizontal", movement.x);
+            enemyAnimator.SetFloat("Vertical", movement.y);
         }
-
-        rb.linearVelocity = movement * speed;
-        enemyAnimator.SetFloat("Horizontal", movement.x);
-        enemyAnimator.SetFloat("Vertical", movement.y);
     }
 
     private void OnDestroy()
