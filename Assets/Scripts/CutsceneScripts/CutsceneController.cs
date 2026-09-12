@@ -100,14 +100,19 @@ public class CutsceneController : MonoBehaviour
 
     private IEnumerator StartCutscene(){
         StopPlayerControl();
+        inputController.StopInteractive();
+
         if (preCutsceneDialogue) {
+            inputController.ResumeInteractive();
             dialogueNPC.Speak();
         }
+        
         while (dialogueHandler.dialogueStarted)
         {
             yield return null;
         }
         
+        inputController.StopInteractive();
         yield return StartCoroutine(MovePlayerToStagingPosition());
         timeline.Play();
     }
@@ -136,6 +141,7 @@ public class CutsceneController : MonoBehaviour
 
     private void OnTimelineStopped(PlayableDirector director)
     {
+        inputController.ResumeInteractive();
         if (!dialogueHandler.dialogueBox.activeSelf) 
         {
             ResumePlayerControl();

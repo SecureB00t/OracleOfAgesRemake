@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a624aa1a9cf6e0b37accb30fc1f7c23e, type: 3}
   m_Name: ChangeNPCStateDialogueAction
   m_EditorClassIdentifier: Assembly-CSharp::ChangeNPCStateDialogueAction
-  newState: 0
+  newState: 1

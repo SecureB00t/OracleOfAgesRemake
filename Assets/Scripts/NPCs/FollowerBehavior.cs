@@ -36,8 +36,6 @@ public class FollowerBehavior : MonoBehaviour
         float movementSpeed = 5f;
         while (transform.position.y != targetToFollow.position.y)
         {
-            //playerAnimator.SetFloat("Horizontal", 0f);
-            //playerAnimator.SetFloat("Vertical", Mathf.Sign(targetToFollow.position.y - transform.position.y));
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 new Vector3(transform.position.x,targetToFollow.position.y, transform.position.z),
@@ -49,8 +47,6 @@ public class FollowerBehavior : MonoBehaviour
 
         while (transform.position.x != targetToFollow.position.x)
         {
-            //playerAnimator.SetFloat("Vertical", 0f);
-           // playerAnimator.SetFloat("Horizontal", Mathf.Sign(targetToFollow.position.x - transform.position.x));
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 new Vector3(targetToFollow.position.x, transform.position.y, transform.position.z),
